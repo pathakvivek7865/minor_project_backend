@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2018 at 11:59 AM
+-- Generation Time: Jul 18, 2018 at 06:48 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -73,16 +73,44 @@ INSERT INTO `contact` (`contact_id`, `email`, `phone`, `tourist_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `images`
+-- Table structure for table `geo_location`
 --
 
-CREATE TABLE `images` (
-  `id` int(11) NOT NULL,
-  `img1` varchar(100) DEFAULT NULL,
-  `img2` varchar(100) DEFAULT NULL,
-  `img3` varchar(100) DEFAULT NULL,
-  `img4` varchar(100) DEFAULT NULL
+CREATE TABLE `geo_location` (
+  `geo_location_id` bigint(20) NOT NULL,
+  `latitude` double NOT NULL,
+  `longitude` double NOT NULL,
+  `place_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `geo_location`
+--
+
+INSERT INTO `geo_location` (`geo_location_id`, `latitude`, `longitude`, `place_id`) VALUES
+(1, 23244.24242, 2324.2424, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `image`
+--
+
+CREATE TABLE `image` (
+  `image_id` bigint(20) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `place_id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`image_id`, `image`, `place_id`) VALUES
+(1, 'file:///D:/APPLICATIONS/springboot2/ITG/src/main/uploads/places/download.jpg', 1),
+(2, 'file:///D:/APPLICATIONS/springboot2/ITG/src/main/uploads/places/1.jpg', 1),
+(3, 'file:///D:/APPLICATIONS/springboot2/ITG/src/main/uploads/places/2.jpg', 1),
+(4, 'file:///D:/APPLICATIONS/springboot2/ITG/src/main/uploads/places/3.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -91,16 +119,33 @@ CREATE TABLE `images` (
 --
 
 CREATE TABLE `place` (
-  `PlaceId` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Address` text NOT NULL,
-  `Location` varchar(50) NOT NULL,
-  `Description` text NOT NULL,
-  `Established` varchar(20) NOT NULL,
-  `Importance` text NOT NULL,
-  `Rating` int(1) NOT NULL,
-  `PreferredActivities` text NOT NULL
+  `place_id` bigint(20) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `address` text NOT NULL,
+  `description` text NOT NULL,
+  `established` date DEFAULT NULL,
+  `importance` text NOT NULL,
+  `rating` int(1) NOT NULL,
+  `prefered_activities` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `place`
+--
+
+INSERT INTO `place` (`place_id`, `name`, `address`, `description`, `established`, `importance`, `rating`, `prefered_activities`) VALUES
+(1, 'PashupatiNath Temple', 'Gaushala,Kathmandu,Nepal', 'Famous temple among the Hindus', '1817-07-04', 'Lord PashupatiNath ki jai.', 5, 'worshiping the god.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `place_image`
+--
+
+CREATE TABLE `place_image` (
+  `place_place_id` bigint(20) NOT NULL,
+  `image_image_id` bigint(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -175,16 +220,31 @@ ALTER TABLE `contact`
   ADD KEY `FKkbcphunnkhq5r8bopmqrxh392` (`tourist_id`);
 
 --
--- Indexes for table `images`
+-- Indexes for table `geo_location`
 --
-ALTER TABLE `images`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `geo_location`
+  ADD PRIMARY KEY (`geo_location_id`),
+  ADD KEY `FKclqnor45sjhjmsj4hxf4nc5vr` (`place_id`);
+
+--
+-- Indexes for table `image`
+--
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`image_id`),
+  ADD KEY `FK9c8l45da3h0hylfbw3i118e3l` (`place_id`);
 
 --
 -- Indexes for table `place`
 --
 ALTER TABLE `place`
-  ADD PRIMARY KEY (`PlaceId`);
+  ADD PRIMARY KEY (`place_id`);
+
+--
+-- Indexes for table `place_image`
+--
+ALTER TABLE `place_image`
+  ADD KEY `FKq7w4mywqiw4elu9rthaipq4he` (`image_image_id`),
+  ADD KEY `FK3l1x8jjn7y5d2l7gy647vulhw` (`place_place_id`);
 
 --
 -- Indexes for table `reviews`
@@ -221,16 +281,22 @@ ALTER TABLE `contact`
   MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `images`
+-- AUTO_INCREMENT for table `geo_location`
 --
-ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `geo_location`
+  MODIFY `geo_location_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `image`
+--
+ALTER TABLE `image`
+  MODIFY `image_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `place`
 --
 ALTER TABLE `place`
-  MODIFY `PlaceId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `place_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -265,6 +331,18 @@ ALTER TABLE `address`
 --
 ALTER TABLE `contact`
   ADD CONSTRAINT `FKkbcphunnkhq5r8bopmqrxh392` FOREIGN KEY (`tourist_id`) REFERENCES `tourist` (`id`);
+
+--
+-- Constraints for table `geo_location`
+--
+ALTER TABLE `geo_location`
+  ADD CONSTRAINT `FKclqnor45sjhjmsj4hxf4nc5vr` FOREIGN KEY (`place_id`) REFERENCES `place` (`place_id`);
+
+--
+-- Constraints for table `image`
+--
+ALTER TABLE `image`
+  ADD CONSTRAINT `FK9c8l45da3h0hylfbw3i118e3l` FOREIGN KEY (`place_id`) REFERENCES `place` (`place_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
