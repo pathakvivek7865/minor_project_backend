@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2018 at 06:48 AM
+-- Generation Time: Jul 24, 2018 at 02:05 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -80,15 +80,34 @@ CREATE TABLE `geo_location` (
   `geo_location_id` bigint(20) NOT NULL,
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
-  `place_id` bigint(20) NOT NULL
+  `place_id` bigint(20) NOT NULL,
+  `place_place_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `geo_location`
 --
 
-INSERT INTO `geo_location` (`geo_location_id`, `latitude`, `longitude`, `place_id`) VALUES
-(1, 23244.24242, 2324.2424, 1);
+INSERT INTO `geo_location` (`geo_location_id`, `latitude`, `longitude`, `place_id`, `place_place_id`) VALUES
+(1, 23244.24242, 2324.2424, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hibernate_sequence`
+--
+
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hibernate_sequence`
+--
+
+INSERT INTO `hibernate_sequence` (`next_val`) VALUES
+(1),
+(1);
 
 -- --------------------------------------------------------
 
@@ -163,6 +182,26 @@ CREATE TABLE `reviews` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `role_id` int(11) NOT NULL,
+  `role` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`role_id`, `role`) VALUES
+(1, 'ADMIN'),
+(2, 'USER'),
+(3, 'ADMIN');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `topics`
 --
 
@@ -193,13 +232,55 @@ INSERT INTO `tourist` (`id`, `name`, `status`) VALUES
 (2, 'updated something', 1),
 (3, 'pathak', 0),
 (8, 'vivek', 0),
-(9, 'updated something', 1),
-(10, 'swekshya', 0),
 (11, 'pathak', 0),
 (12, 'vivek pathak', 1),
 (14, 'new', 0),
 (15, 'new and new', 0),
 (16, 'tourist', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `active` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `email`, `password`, `name`, `last_name`, `active`) VALUES
+(1, 'pathakvivek7865@gmail.com', '$2a$10$QV7Cax1520gpjaA9WVh2N./.hkUqSPej39.G.Q/NEFij4los9N/eO', 'vivek', 'pathak', 1),
+(2, 'vivek@gamil.com', '$2a$10$PHV4a4lxfAYA4L9I7K.SRe503V6s.oWpBBuHobX.6StLep8XwnO66', 'pathak', 'pathak', 1),
+(3, 'v@gmail.com', 'v', 'v', 'v', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_role`
+--
+
+CREATE TABLE `user_role` (
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_role`
+--
+
+INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
+(1, 1),
+(2, 2),
+(3, 3);
 
 --
 -- Indexes for dumped tables
@@ -224,6 +305,7 @@ ALTER TABLE `contact`
 --
 ALTER TABLE `geo_location`
   ADD PRIMARY KEY (`geo_location_id`),
+  ADD UNIQUE KEY `UK_dblgsp0uk3q2adavmj0qnchv2` (`place_place_id`),
   ADD KEY `FKclqnor45sjhjmsj4hxf4nc5vr` (`place_id`);
 
 --
@@ -263,6 +345,19 @@ ALTER TABLE `topics`
 --
 ALTER TABLE `tourist`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `user_role`
+--
+ALTER TABLE `user_role`
+  ADD PRIMARY KEY (`user_id`,`role_id`),
+  ADD UNIQUE KEY `UK_it77eq964jhfqtu54081ebtio` (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables

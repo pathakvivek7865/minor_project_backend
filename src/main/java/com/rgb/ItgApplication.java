@@ -3,12 +3,15 @@ package com.rgb;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 @SpringBootApplication
+@ComponentScan ({"com.rgb"})
+//@EnableMongoRepositories ("com.server.repository")
 public class ItgApplication {
 
 	public static void main(String[] args) {

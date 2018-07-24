@@ -50,6 +50,11 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
 		
 		<!-- Spring Devtool -->
 		<dependency>
@@ -71,12 +76,11 @@
 	</dependency>
 	
 	
-	<!-- Web Security -->
-	<dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-web</artifactId>
-</dependency>
 
+<dependency>
+    <groupId>javax.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+</dependency>
 
 	
 		
