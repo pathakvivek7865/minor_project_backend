@@ -31,6 +31,7 @@ public class ToursitController {
 		return touristService.getTourist(id);
 	}
 	
+    @PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(method=RequestMethod.POST,value="/tourists")
 	public void addTourist(@RequestBody Tourist tourist) {
 		touristService.addTourist(tourist);

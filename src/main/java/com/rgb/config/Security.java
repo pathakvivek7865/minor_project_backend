@@ -49,7 +49,9 @@ public class Security extends WebSecurityConfigurerAdapter {
             //    .formLogin().permitAll();*/
     	
     	http.csrf().disable()
-		.authorizeRequests().anyRequest().fullyAuthenticated().and()
+		.authorizeRequests() 
+		.antMatchers("/signup**").permitAll()
+		.anyRequest().fullyAuthenticated().and()
 		.httpBasic().authenticationEntryPoint(basicAuthenticationPoint);
     }
 
