@@ -10,7 +10,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 @SpringBootApplication
-@ComponentScan ({"com.rgb"})
+//@ComponentScan ({"com.rgb"})
 //@EnableMongoRepositories ("com.server.repository")
 public class ItgApplication {
 

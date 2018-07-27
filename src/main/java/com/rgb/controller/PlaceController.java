@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rgb.model.Place;
+import com.rgb.rootname.PlaceList;
 import com.rgb.service.PlaceService;
 
 @RestController
@@ -16,7 +17,7 @@ public class PlaceController {
 	private PlaceService placeService;
 	
 	@RequestMapping(value="/places")
-	public List<Place> getAllPlaces(){
+	public PlaceList getAllPlaces(){
 		return placeService.getAllPlaces();
 	}
 }

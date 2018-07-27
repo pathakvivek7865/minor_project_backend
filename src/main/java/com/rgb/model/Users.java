@@ -10,9 +10,9 @@ public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable= false, unique=true)
     private int id;
-    @Column(name = "email")
+    @Column(name = "email",nullable = false, unique = true)
     private String email;
     @Column(name = "password")
     private String password;

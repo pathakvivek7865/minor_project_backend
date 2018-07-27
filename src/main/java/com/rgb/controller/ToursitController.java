@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rgb.model.Tourist;
+import com.rgb.rootname.TouristList;
 import com.rgb.service.TouristService;
 
 
@@ -22,7 +23,7 @@ public class ToursitController {
 	private TouristService touristService;
 	
 	@RequestMapping(value="/tourists")
-	public List<Tourist> getAllTourist(){
+	public TouristList getAllTourist(){
 		return touristService.getAllTourist();
 	}
 	
