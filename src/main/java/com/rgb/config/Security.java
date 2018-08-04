@@ -33,20 +33,12 @@ public class Security extends WebSecurityConfigurerAdapter {
     }
     
     private BCryptPasswordEncoder bCryptPasswordEncoder() {
-		// TODO Auto-generated method stub
 		return new BCryptPasswordEncoder();
 	}
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-       // http.csrf().disable();
-        //http.authorizeRequests()
-                //.antMatchers("**/secured/**").authenticated()
-               // .anyRequest().authenticated()
-          //      .and()
-            //    .formLogin().permitAll();*/
     	
     	http.csrf().disable()
 		.authorizeRequests() 
@@ -57,17 +49,5 @@ public class Security extends WebSecurityConfigurerAdapter {
 		.httpBasic().authenticationEntryPoint(basicAuthenticationPoint);
     }
 
-   /* private PasswordEncoder getPasswordEncoder() {
-        return new PasswordEncoder() {
-            @Override
-            public String encode(CharSequence charSequence) {
-                return charSequence.toString();
-            }
-
-            @Override
-            public boolean matches(CharSequence charSequence, String s) {
-                return true;
-            }
-        };
-    }*/
+  
 }

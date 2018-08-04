@@ -1,10 +1,9 @@
 package com.rgb.service;
 
-import java.util.Optional;
-
-import javax.persistence.EntityExistsException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +44,32 @@ public class UsersService {
 		
 		usersRepository.save(user);
 
+		
+	}
+	
+		
+
+	public int getCurrentUser() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String user_name;
+
+		if (principal instanceof UserDetails) {
+		  String username = ((UserDetails)principal).getUsername();
+		  user_name = username;
+		} else {
+		  String username = principal.toString();
+		  user_name = username;
+		}
+		
+		
+		
+		if(user_name != null) {
+			Users user = usersRepository.findIdByEmail(user_name);
+			int userId = user.getId();
+			return userId;
+		}else {
+			return 0;
+		}
 		
 	}
 
