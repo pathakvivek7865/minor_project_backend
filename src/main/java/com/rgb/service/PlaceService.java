@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rgb.model.Place;
+import com.rgb.model.UsersPlaces;
 import com.rgb.repository.PlaceRepository;
 import com.rgb.rootname.PlaceList;
 
@@ -35,5 +36,9 @@ public PlaceList getAllPlaces() {
 		PlaceList placeList = new PlaceList("places", places );
 		return placeList;
 	}
+
+public void postPlace(Place place) {
+	placeRepository.save(place);
+}
 
 }
