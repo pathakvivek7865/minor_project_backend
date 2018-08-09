@@ -28,6 +28,7 @@ public class Place {
 	private String established;
 	private String importance;
 	private String preferedActivities;
+	private String featuredImage;
 	
 	 @OneToOne(fetch = FetchType.LAZY,cascade =  CascadeType.ALL)
 	 @JoinColumn(name = "place_id")
@@ -72,7 +73,7 @@ public class Place {
 	public Place() {}
 	
 	public Place(long id, String name, String address, String description, String established, String importance,
-			 String preferedActivities) {
+			 String preferedActivities, String featuredImage) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -81,6 +82,7 @@ public class Place {
 		this.established = established;
 		this.importance = importance;
 		this.preferedActivities = preferedActivities;
+		this.featuredImage = featuredImage;
 	}
 
 	public long getId() {
@@ -139,6 +141,14 @@ public class Place {
 
 	public void setPreferedActivities(String preferedActivities) {
 		this.preferedActivities = preferedActivities;
+	}
+	
+	public String getFeaturedImage() {
+		return featuredImage;
+	}
+
+	public void setFeaturedImage(String featuredImage) {
+		this.featuredImage = featuredImage;
 	}
 	
 	
