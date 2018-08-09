@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 30, 2018 at 05:48 PM
+-- Generation Time: Aug 09, 2018 at 05:38 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -106,8 +106,8 @@ CREATE TABLE `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(10),
-(10);
+(32),
+(32);
 
 -- --------------------------------------------------------
 
@@ -144,7 +144,6 @@ CREATE TABLE `place` (
   `description` text NOT NULL,
   `established` date DEFAULT NULL,
   `importance` text NOT NULL,
-  `rating` int(1) NOT NULL,
   `prefered_activities` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -152,20 +151,9 @@ CREATE TABLE `place` (
 -- Dumping data for table `place`
 --
 
-INSERT INTO `place` (`place_id`, `name`, `address`, `description`, `established`, `importance`, `rating`, `prefered_activities`) VALUES
-(1, 'PashupatiNath Temple', 'Gaushala,Kathmandu,Nepal', 'Famous temple among the Hindus.\r\nThe Pashupatinath Temple is a famous and sacred Hindu temple complex that is located on the banks of the Bagmati River, approximately 5 kilometres north-east of Kathmandu in the eastern part of Kathmandu Valley, the capital of Nepal.', '1817-07-04', 'Lord PashupatiNath ki jai.', 5, 'https://travelmassif.com/wp-content/uploads/pashupatinath-temple.jpg'),
-(2, 'Swayambhunath Stupa', 'Kathmandu,Nepal', 'Find peace and prayers on the little hillock of Swaymbhunath northwest of Kathmandu Valley.', '2018-07-02', 'The huge gold plated Vajra ‘thunderbolt’ set in the east side of the stupa\r\n\r\nBuddha statue on the west side of Swayambhu\r\n\r\nThe Sleeping Buddha\r\n\r\nThe Dewa Dharma Monastery, noted for a bronze icon of Buddha and traditional Tibetan paintings\r\n\r\nThe temple dedicated to Harati, the goddess of all children. It is said that she was an ogress before Lord Buddha converted her to be the caretaker of all children.', 5, 'https://www.welcomenepal.com/imagecache/crop_featured_image/swayambhu-leisure-1.jpeg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `place_image`
---
-
-CREATE TABLE `place_image` (
-  `place_place_id` bigint(20) NOT NULL,
-  `image_image_id` bigint(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `place` (`place_id`, `name`, `address`, `description`, `established`, `importance`, `prefered_activities`) VALUES
+(1, 'PashupatiNath Temple', 'Gaushala,Kathmandu,Nepal', 'Famous temple among the Hindus.\r\nThe Pashupatinath Temple is a famous and sacred Hindu temple complex that is located on the banks of the Bagmati River, approximately 5 kilometres north-east of Kathmandu in the eastern part of Kathmandu Valley, the capital of Nepal.', '1817-07-04', 'Lord PashupatiNath ki jai.', 'https://travelmassif.com/wp-content/uploads/pashupatinath-temple.jpg'),
+(2, 'Swayambhunath Stupa', 'Kathmandu,Nepal', 'Find peace and prayers on the little hillock of Swaymbhunath northwest of Kathmandu Valley.', '2018-07-02', 'The huge gold plated Vajra ‘thunderbolt’ set in the east side of the stupa\r\n\r\nBuddha statue on the west side of Swayambhu\r\n\r\nThe Sleeping Buddha\r\n\r\nThe Dewa Dharma Monastery, noted for a bronze icon of Buddha and traditional Tibetan paintings\r\n\r\nThe temple dedicated to Harati, the goddess of all children. It is said that she was an ogress before Lord Buddha converted her to be the caretaker of all children.', 'https://www.welcomenepal.com/imagecache/crop_featured_image/swayambhu-leisure-1.jpeg');
 
 -- --------------------------------------------------------
 
@@ -203,25 +191,13 @@ INSERT INTO `role` (`role_id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `topics`
---
-
-CREATE TABLE `topics` (
-  `id` bigint(20) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tourist`
 --
 
 CREATE TABLE `tourist` (
   `id` bigint(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `status` int(1) NOT NULL
+  `status` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -237,7 +213,10 @@ INSERT INTO `tourist` (`id`, `name`, `status`) VALUES
 (12, 'vivek pathak', 1),
 (14, 'new', 0),
 (15, 'new and new', 0),
-(16, 'tourist', 0);
+(16, 'tourist', 0),
+(18, 'v', 1),
+(19, 'a', 1),
+(20, 'g', 1);
 
 -- --------------------------------------------------------
 
@@ -250,21 +229,56 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `active` int(11) DEFAULT NULL
+  `last_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `email`, `password`, `name`, `last_name`, `active`) VALUES
-(1, 'vivek', '$2a$10$QV7Cax1520gpjaA9WVh2N./.hkUqSPej39.G.Q/NEFij4los9N/eO', 'vivek', 'pathak', 1),
-(2, 'vivek@gamil.com', '$2a$10$PHV4a4lxfAYA4L9I7K.SRe503V6s.oWpBBuHobX.6StLep8XwnO66', 'pathak', 'pathak', 1),
-(3, 'v@gmail.com', 'v', 'v', 'v', 1),
-(5, 'p@gmail.com', '$2a$10$6rkBwTroICQzfjsR9Boqeui82qqdu2q6nFs/2MqYtMsMM7LfS1xMO', 'vivek', NULL, 0),
-(8, 'vp@gmail.com', '$2a$10$1asrrIRhzYP4QYCrR182Tukb1DZa5atj.A7YaThDbAf9WCGO1AQT.', 'vivek', 'p', 0),
-(9, '1@gmail.com', '$2a$10$WTqW7HCdTfgI7Bund.15ouWmPF151HitWmifKxLuyzfBKf1LkZJ0q', 'vivek', 'p', 0);
+INSERT INTO `user` (`user_id`, `email`, `password`, `name`, `last_name`) VALUES
+(1, 'vivek', '$2a$10$QV7Cax1520gpjaA9WVh2N./.hkUqSPej39.G.Q/NEFij4los9N/eO', 'dai', 'pathak'),
+(25, 'pathak', '$2a$10$sfNXwkqG7Fd4.918sp48ae3qgXqVAcKSLig/5mRTmI9CL0degIz1W', 'Vivek', 'Pathak'),
+(29, 'v', '$2a$10$KRleRjaPnRRdZauRcpE4..HpK7bcvN.SADvXbqG1DZa5L8hpBY0dC', 'v', 'v'),
+(30, 'a', '$2a$10$HkLV79hCPgpG8y1RV7ykNO3VSQFw8QySn.308FyCeu0c7I6h7Ct8G', 'a', 'a'),
+(31, 'g', '$2a$10$fZsHFhZJYg.WRFR.g53/OuKeC6MqKtcj7OmVw1BxBebFHBjb746ki', 'g', 'g');
+
+--
+-- Triggers `user`
+--
+DELIMITER $$
+CREATE TRIGGER `afterSignup` AFTER INSERT ON `user` FOR EACH ROW BEGIN
+
+
+   INSERT INTO tourist(name,status)
+   VALUES
+   ( NEW.name,
+     1
+   );
+
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_places`
+--
+
+CREATE TABLE `users_places` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `place_id` bigint(20) NOT NULL,
+  `rating` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_places`
+--
+
+INSERT INTO `users_places` (`id`, `user_id`, `place_id`, `rating`) VALUES
+(5, 1, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -282,20 +296,7 @@ CREATE TABLE `user_role` (
 --
 
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
-(1, 1),
-(2, 2),
-(3, 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_roles`
---
-
-CREATE TABLE `user_roles` (
-  `users_user_id` int(11) NOT NULL,
-  `roles_role_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+(1, 1);
 
 --
 -- Indexes for dumped tables
@@ -337,13 +338,6 @@ ALTER TABLE `place`
   ADD PRIMARY KEY (`place_id`);
 
 --
--- Indexes for table `place_image`
---
-ALTER TABLE `place_image`
-  ADD KEY `FKq7w4mywqiw4elu9rthaipq4he` (`image_image_id`),
-  ADD KEY `FK3l1x8jjn7y5d2l7gy647vulhw` (`place_place_id`);
-
---
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -354,12 +348,6 @@ ALTER TABLE `reviews`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`role_id`);
-
---
--- Indexes for table `topics`
---
-ALTER TABLE `topics`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tourist`
@@ -375,18 +363,18 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `users_places`
+--
+ALTER TABLE `users_places`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id` (`user_id`,`place_id`);
+
+--
 -- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`user_id`,`role_id`),
   ADD UNIQUE KEY `UK_it77eq964jhfqtu54081ebtio` (`role_id`);
-
---
--- Indexes for table `user_roles`
---
-ALTER TABLE `user_roles`
-  ADD PRIMARY KEY (`users_user_id`,`roles_role_id`),
-  ADD KEY `FKhxmmg8j4h4qpwbvf39cnujlkf` (`roles_role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -435,16 +423,16 @@ ALTER TABLE `role`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `topics`
---
-ALTER TABLE `topics`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `tourist`
 --
 ALTER TABLE `tourist`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `users_places`
+--
+ALTER TABLE `users_places`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

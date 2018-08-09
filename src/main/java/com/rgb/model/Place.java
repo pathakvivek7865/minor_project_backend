@@ -27,7 +27,6 @@ public class Place {
 	private String description;
 	private String established;
 	private String importance;
-	private int rating;
 	private String preferedActivities;
 	
 	 @OneToOne(fetch = FetchType.LAZY,cascade =  CascadeType.ALL)
@@ -73,7 +72,7 @@ public class Place {
 	public Place() {}
 	
 	public Place(long id, String name, String address, String description, String established, String importance,
-			int rating, String preferedActivities) {
+			 String preferedActivities) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -81,7 +80,6 @@ public class Place {
 		this.description = description;
 		this.established = established;
 		this.importance = importance;
-		this.rating = rating;
 		this.preferedActivities = preferedActivities;
 	}
 
@@ -133,13 +131,7 @@ public class Place {
 		this.importance = importance;
 	}
 
-	public int getRating() {
-		return rating;
-	}
 
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
 
 	public String getPreferedActivities() {
 		return preferedActivities;

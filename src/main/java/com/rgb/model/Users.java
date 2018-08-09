@@ -20,8 +20,6 @@ public class Users {
     private String name;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "active")
-    private int active;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
@@ -30,7 +28,6 @@ public class Users {
     }
 
     public Users(Users users) {
-        this.active = users.getActive();
         this.email = users.getEmail();
         this.roles = users.getRoles();
         this.name = users.getName();
@@ -79,13 +76,6 @@ public class Users {
         this.lastName = lastName;
     }
 
-    public int getActive() {
-        return active;
-    }
-
-    public void setActive(int active) {
-        this.active = active;
-    }
 
     public Set<Role> getRoles() {
         return roles;
