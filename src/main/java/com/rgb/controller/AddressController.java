@@ -24,7 +24,7 @@ public class AddressController {
 		return addressService.getAllAddressByTouristId();
 	}
 	
-	@RequestMapping(value="/tourists/{tourist_id}/address", method= RequestMethod.POST)
+	@RequestMapping(value="/tourists/{tourist_id}/address", method= RequestMethod.POST, headers = "Content-Type=Application/json")
 	public void addTourist(@RequestBody Address address, @PathVariable long tourist_id){
 		addressService.addAddressByTouristId(address,tourist_id);
 		

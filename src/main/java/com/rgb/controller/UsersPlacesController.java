@@ -1,5 +1,6 @@
 package com.rgb.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,6 @@ public class UsersPlacesController {
 	public Optional<UsersPlaces> getRating(@PathVariable int id) {
 		return usersPlacesService.getRating(id);
 	}
+	
 
 }

@@ -1,12 +1,6 @@
 package com.rgb.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -20,12 +14,9 @@ public class Location {
 	private double latitude;
 	private double longitude;
 	
-	
-	
 	@OneToOne(fetch = FetchType.LAZY, optional = false)
-    //@JoinColumn(name = "place_id", nullable = false)
+    @JoinColumn(name = "place_id", nullable = false)
     private Place place;
-	
 	
 	public Location() {}
 	

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2018 at 03:00 PM
+-- Generation Time: Aug 11, 2018 at 06:22 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -29,25 +29,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `address` (
-  `address_id` int(11) NOT NULL,
-  `country` varchar(50) NOT NULL,
-  `state` varchar(50) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `zip_code` int(7) DEFAULT NULL,
-  `street` varchar(50) DEFAULT NULL,
-  `house_number` varchar(50) DEFAULT NULL,
-  `tourist_id` bigint(20) NOT NULL
+  `address_id` bigint(11) NOT NULL,
+  `country` varchar(50) NOT NULL DEFAULT 'null',
+  `state` varchar(50) NOT NULL DEFAULT 'null',
+  `city` varchar(50) NOT NULL DEFAULT 'null',
+  `zip_code` int(7) DEFAULT '0',
+  `street` varchar(50) DEFAULT 'null',
+  `house_number` varchar(50) DEFAULT 'null',
+  `user_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `address`
 --
 
-INSERT INTO `address` (`address_id`, `country`, `state`, `city`, `zip_code`, `street`, `house_number`, `tourist_id`) VALUES
-(18, 'Nepal', '3', 'ktm', 4600, 'Koteshwor, Near BhatBhateni', '5425', 1),
-(56, 'india', 'Tamil Nadu', 'Chennai', 12345, 'something', '34454', 2),
-(57, 'india', 'tamilnadu', 'chennai', 1234, 'something', '123', 3),
-(58, 'Nepal', '3', 'ktm', 4600, 'Koteshwor, Near BhatBhateni', '5425', 8);
+INSERT INTO `address` (`address_id`, `country`, `state`, `city`, `zip_code`, `street`, `house_number`, `user_id`) VALUES
+(59, 'Nepal', '3', 'ktm', 4600, 'Koteshwor, Near BhatBhateni', '5425', 1),
+(64, 'null', 'null', 'null', 0, 'null', 'null', 48),
+(67, 'null', 'null', 'null', 0, 'null', 'null', 51),
+(69, 'null', 'null', 'null', 0, 'null', 'null', 54);
 
 -- --------------------------------------------------------
 
@@ -56,19 +56,34 @@ INSERT INTO `address` (`address_id`, `country`, `state`, `city`, `zip_code`, `st
 --
 
 CREATE TABLE `contact` (
-  `contact_id` int(11) NOT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `phone` bigint(10) DEFAULT NULL,
-  `tourist_id` bigint(20) NOT NULL
+  `contact_id` bigint(11) NOT NULL,
+  `email` varchar(50) DEFAULT 'null',
+  `phone` bigint(10) DEFAULT '0',
+  `user_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contact`
 --
 
-INSERT INTO `contact` (`contact_id`, `email`, `phone`, `tourist_id`) VALUES
-(1, 'pathakvivek7865@gmail.com', 9803065373, 1),
-(2, 'v@gmail.com', 9803065373, 2);
+INSERT INTO `contact` (`contact_id`, `email`, `phone`, `user_id`) VALUES
+(5, 'pathakvivek7865@gmail.com', 9803065373, 1),
+(10, 'pathakvivek7865@gmail.com', 0, 48),
+(13, 'pathak', 0, 51),
+(15, 'pathak@gmail.com', 0, 54);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `feedback_id` bigint(11) NOT NULL,
+  `place_id` bigint(11) NOT NULL,
+  `user_id` bigint(11) NOT NULL,
+  `feedback` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -80,34 +95,15 @@ CREATE TABLE `geo_location` (
   `geo_location_id` bigint(20) NOT NULL,
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
-  `place_id` bigint(20) NOT NULL,
-  `place_place_id` bigint(20) NOT NULL
+  `place_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `geo_location`
 --
 
-INSERT INTO `geo_location` (`geo_location_id`, `latitude`, `longitude`, `place_id`, `place_place_id`) VALUES
-(1, 23244.24242, 2324.2424, 1, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `hibernate_sequence`
---
-
-CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `hibernate_sequence`
---
-
-INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(32),
-(32);
+INSERT INTO `geo_location` (`geo_location_id`, `latitude`, `longitude`, `place_id`) VALUES
+(2, 27.7106, 85.3486, 1);
 
 -- --------------------------------------------------------
 
@@ -177,19 +173,6 @@ INSERT INTO `place` (`place_id`, `name`, `address`, `description`, `established`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reviews`
---
-
-CREATE TABLE `reviews` (
-  `id` int(11) NOT NULL,
-  `PlaceId` int(11) NOT NULL,
-  `UserId` int(11) NOT NULL,
-  `Review` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `role`
 --
 
@@ -203,39 +186,8 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`role_id`, `role`) VALUES
-(1, 'ADMIN'),
-(2, 'USER'),
-(3, 'ADMIN');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tourist`
---
-
-CREATE TABLE `tourist` (
-  `id` bigint(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `status` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tourist`
---
-
-INSERT INTO `tourist` (`id`, `name`, `status`) VALUES
-(1, 'vivek', 0),
-(2, 'updated something', 1),
-(3, 'pathak', 0),
-(8, 'vivek', 0),
-(11, 'pathak', 0),
-(12, 'vivek pathak', 1),
-(14, 'new', 0),
-(15, 'new and new', 0),
-(16, 'tourist', 0),
-(18, 'v', 1),
-(19, 'a', 1),
-(20, 'g', 1);
+(4, 'ADMIN'),
+(5, 'USER');
 
 -- --------------------------------------------------------
 
@@ -244,23 +196,22 @@ INSERT INTO `tourist` (`id`, `name`, `status`) VALUES
 --
 
 CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
+  `user_id` bigint(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `last_name` varchar(255) DEFAULT NULL
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `email`, `password`, `name`, `last_name`) VALUES
+INSERT INTO `user` (`user_id`, `email`, `password`, `first_name`, `last_name`) VALUES
 (1, 'vivek', '$2a$10$QV7Cax1520gpjaA9WVh2N./.hkUqSPej39.G.Q/NEFij4los9N/eO', 'dai', 'pathak'),
-(25, 'pathak', '$2a$10$sfNXwkqG7Fd4.918sp48ae3qgXqVAcKSLig/5mRTmI9CL0degIz1W', 'Vivek', 'Pathak'),
-(29, 'v', '$2a$10$KRleRjaPnRRdZauRcpE4..HpK7bcvN.SADvXbqG1DZa5L8hpBY0dC', 'v', 'v'),
-(30, 'a', '$2a$10$HkLV79hCPgpG8y1RV7ykNO3VSQFw8QySn.308FyCeu0c7I6h7Ct8G', 'a', 'a'),
-(31, 'g', '$2a$10$fZsHFhZJYg.WRFR.g53/OuKeC6MqKtcj7OmVw1BxBebFHBjb746ki', 'g', 'g');
+(48, 'pathakvivek7865@gmail.com', '$2a$10$XesO8uCzetrNroBZ9fOJ2.JLQaCpb3Y93H1ZZ.H0N9Zc74LDj7zXS', 'Vivek', 'Pathak'),
+(51, 'pathak', '$2a$10$MnREgj9XB1wla3Bteeou0ukBFy6qwjs8HuFsAMEMpeSn4uYsRZcqC', 'Vivek', 'Pathak'),
+(54, 'pathak@gmail.com', '$2a$10$79G5Aswl.KS3t0JgRb3apunKR6smOx4Xa/sIOrbMx75rJkc9k8hCi', 'Vivek', 'Pathak');
 
 --
 -- Triggers `user`
@@ -268,12 +219,20 @@ INSERT INTO `user` (`user_id`, `email`, `password`, `name`, `last_name`) VALUES
 DELIMITER $$
 CREATE TRIGGER `afterSignup` AFTER INSERT ON `user` FOR EACH ROW BEGIN
 
+  
+   INSERT INTO contact(email,user_id) VALUES(new.email,new.user_id);
+   INSERT INTO address(user_id) VALUES(new.user_id);
+   INSERT INTO user_role(user_id, role_id) VALUES(new.user_id, 5);
 
-   INSERT INTO tourist(name,status)
-   VALUES
-   ( NEW.name,
-     1
-   );
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `beforeDelete` BEFORE DELETE ON `user` FOR EACH ROW BEGIN
+
+   DELETE from address where user_id = old.user_id;
+   DELETE FROM contact where user_id = old.user_id;
+   DELETE FROM user_role where user_id = old.user_id;
 
 END
 $$
@@ -297,7 +256,9 @@ CREATE TABLE `users_places` (
 --
 
 INSERT INTO `users_places` (`id`, `user_id`, `place_id`, `rating`) VALUES
-(5, 1, 1, 5);
+(5, 1, 1, 5),
+(6, 2, 2, 5),
+(8, 2, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -306,16 +267,18 @@ INSERT INTO `users_places` (`id`, `user_id`, `place_id`, `rating`) VALUES
 --
 
 CREATE TABLE `user_role` (
-  `user_id` int(11) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `role_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_role`
 --
 
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
-(1, 1);
+(1, 4),
+(51, 5),
+(54, 5);
 
 --
 -- Indexes for dumped tables
@@ -326,22 +289,27 @@ INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 --
 ALTER TABLE `address`
   ADD PRIMARY KEY (`address_id`),
-  ADD KEY `FK8eighrh4x8n0858arplvwpy2d` (`tourist_id`);
+  ADD KEY `FKda8tuywtf0gb6sedwk7la1pgi` (`user_id`);
 
 --
 -- Indexes for table `contact`
 --
 ALTER TABLE `contact`
   ADD PRIMARY KEY (`contact_id`),
-  ADD KEY `FKkbcphunnkhq5r8bopmqrxh392` (`tourist_id`);
+  ADD KEY `FKe07k4jcfdophemi6j1lt84b61` (`user_id`);
+
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`feedback_id`);
 
 --
 -- Indexes for table `geo_location`
 --
 ALTER TABLE `geo_location`
   ADD PRIMARY KEY (`geo_location_id`),
-  ADD UNIQUE KEY `UK_dblgsp0uk3q2adavmj0qnchv2` (`place_place_id`),
-  ADD KEY `FKclqnor45sjhjmsj4hxf4nc5vr` (`place_id`);
+  ADD UNIQUE KEY `UK_dmtiog6b7vmuqq23drw8rwkqv` (`place_id`);
 
 --
 -- Indexes for table `image`
@@ -358,22 +326,10 @@ ALTER TABLE `place`
   ADD UNIQUE KEY `name` (`name`,`address`);
 
 --
--- Indexes for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`role_id`);
-
---
--- Indexes for table `tourist`
---
-ALTER TABLE `tourist`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -394,7 +350,8 @@ ALTER TABLE `users_places`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`user_id`,`role_id`),
-  ADD UNIQUE KEY `UK_it77eq964jhfqtu54081ebtio` (`role_id`);
+  ADD UNIQUE KEY `UK_it77eq964jhfqtu54081ebtio` (`user_id`) USING BTREE,
+  ADD KEY `FKa68196081fvovjhkek5m97n3y` (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -404,19 +361,25 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `address_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `contact_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `feedback_id` bigint(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `geo_location`
 --
 ALTER TABLE `geo_location`
-  MODIFY `geo_location_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `geo_location_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `image`
@@ -431,28 +394,22 @@ ALTER TABLE `place`
   MODIFY `place_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `reviews`
---
-ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tourist`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `tourist`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+ALTER TABLE `user`
+  MODIFY `user_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `users_places`
 --
 ALTER TABLE `users_places`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -462,13 +419,13 @@ ALTER TABLE `users_places`
 -- Constraints for table `address`
 --
 ALTER TABLE `address`
-  ADD CONSTRAINT `FK8eighrh4x8n0858arplvwpy2d` FOREIGN KEY (`tourist_id`) REFERENCES `tourist` (`id`);
+  ADD CONSTRAINT `FKda8tuywtf0gb6sedwk7la1pgi` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `contact`
 --
 ALTER TABLE `contact`
-  ADD CONSTRAINT `FKkbcphunnkhq5r8bopmqrxh392` FOREIGN KEY (`tourist_id`) REFERENCES `tourist` (`id`);
+  ADD CONSTRAINT `FKe07k4jcfdophemi6j1lt84b61` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Constraints for table `geo_location`
@@ -481,13 +438,6 @@ ALTER TABLE `geo_location`
 --
 ALTER TABLE `image`
   ADD CONSTRAINT `FK9c8l45da3h0hylfbw3i118e3l` FOREIGN KEY (`place_id`) REFERENCES `place` (`place_id`);
-
---
--- Constraints for table `user_role`
---
-ALTER TABLE `user_role`
-  ADD CONSTRAINT `FK859n2jvi8ivhui0rl0esws6o` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-  ADD CONSTRAINT `FKa68196081fvovjhkek5m97n3y` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

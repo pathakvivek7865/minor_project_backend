@@ -30,9 +30,10 @@ public class Place {
 	private String preferedActivities;
 	private String featuredImage;
 	
-	 @OneToOne(fetch = FetchType.LAZY,cascade =  CascadeType.ALL)
-	 @JoinColumn(name = "place_id")
-	 private Location location;
+	 @OneToOne(fetch = FetchType.LAZY,
+	            cascade =  CascadeType.ALL,
+	            mappedBy = "place")
+	    private Location location;
 	 
 	 @OneToMany
 	 @JoinColumn(name = "place_id", nullable=false)

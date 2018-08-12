@@ -1,5 +1,7 @@
 package com.rgb.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +26,7 @@ public class UsersPlacesService {
 		Optional<UsersPlaces> rating = usersPlacesRepo.findById(id);
 		return rating;
 	}
+
+
+
 }
