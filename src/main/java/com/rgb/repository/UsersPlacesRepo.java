@@ -2,8 +2,8 @@ package com.rgb.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.rgb.model.UsersPlaces;
+import com.rgb.model.UserPlace;
 
-public interface UsersPlacesRepo extends CrudRepository<UsersPlaces, Integer>{
+public interface UsersPlacesRepo extends CrudRepository<UserPlace, Integer>{
 
 }

@@ -44,7 +44,7 @@ public class Security extends WebSecurityConfigurerAdapter {
 		.authorizeRequests() 
 		.antMatchers("/signup/**").permitAll()
 		//.antMatchers("/places/**").permitAll()
-		//.antMatchers("/users/**").permitAll()
+		.antMatchers("/recomendation/**").permitAll()
 		//.antMatchers("/tourists/**").permitAll()
 		.anyRequest().fullyAuthenticated().and()
 		.httpBasic().authenticationEntryPoint(basicAuthenticationPoint);
