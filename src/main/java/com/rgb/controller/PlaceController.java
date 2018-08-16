@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rgb.model.Place;
-import com.rgb.model.UserPlace;
 import com.rgb.rootname.PlaceList;
+import com.rgb.rootname.RecomendList;
 import com.rgb.service.PlaceService;
 
 @RestController
@@ -27,6 +27,10 @@ public class PlaceController {
 		return placeService.getAllPlaces();
 	}
 	
+	/*@RequestMapping(value="/recommend/")
+	public PlaceList getAllRecommendedPlaces(){
+		return placeService.getAllPlaces();
+	}*/
 	
 	@RequestMapping(value="/places",  method = RequestMethod.POST, headers = "Content-Type=Application/json")
 	public void postPlace(@RequestBody Place place) {
@@ -35,7 +39,7 @@ public class PlaceController {
 	
 	
 	@RequestMapping(value="/recomendation/{id}",  method = RequestMethod.GET)
-	public List<Place> getRating(@PathVariable int id) {
+	public RecomendList getRating(@PathVariable int id) {
 		return placeService.getRecomendedPlace(id);
 	}
 	

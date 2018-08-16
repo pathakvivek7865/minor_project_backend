@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2018 at 12:07 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Generation Time: Aug 16, 2018 at 02:04 AM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,9 +45,25 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`address_id`, `country`, `state`, `city`, `zip_code`, `street`, `house_number`, `user_id`) VALUES
 (59, 'Nepal', '3', 'ktm', 4600, 'Koteshwor, Near BhatBhateni', '5425', 1),
-(64, 'null', 'null', 'null', 0, 'null', 'null', 48),
-(67, 'null', 'null', 'null', 0, 'null', 'null', 51),
-(69, 'null', 'null', 'null', 0, 'null', 'null', 54);
+(114, 'null', 'null', 'null', 0, 'null', 'null', 2),
+(115, 'null', 'null', 'null', 0, 'null', 'null', 3),
+(116, 'null', 'null', 'null', 0, 'null', 'null', 4),
+(117, 'null', 'null', 'null', 0, 'null', 'null', 5),
+(118, 'null', 'null', 'null', 0, 'null', 'null', 6),
+(119, 'null', 'null', 'null', 0, 'null', 'null', 7),
+(120, 'null', 'null', 'null', 0, 'null', 'null', 8),
+(121, 'null', 'null', 'null', 0, 'null', 'null', 9),
+(122, 'null', 'null', 'null', 0, 'null', 'null', 10),
+(123, 'null', 'null', 'null', 0, 'null', 'null', 11),
+(124, 'null', 'null', 'null', 0, 'null', 'null', 12),
+(125, 'null', 'null', 'null', 0, 'null', 'null', 13),
+(126, 'null', 'null', 'null', 0, 'null', 'null', 14),
+(127, 'null', 'null', 'null', 0, 'null', 'null', 15),
+(128, 'null', 'null', 'null', 0, 'null', 'null', 16),
+(129, 'null', 'null', 'null', 0, 'null', 'null', 17),
+(130, 'null', 'null', 'null', 0, 'null', 'null', 18),
+(131, 'null', 'null', 'null', 0, 'null', 'null', 19),
+(132, 'null', 'null', 'null', 0, 'null', 'null', 20);
 
 -- --------------------------------------------------------
 
@@ -68,9 +84,25 @@ CREATE TABLE `contact` (
 
 INSERT INTO `contact` (`contact_id`, `email`, `phone`, `user_id`) VALUES
 (5, 'pathakvivek7865@gmail.com', 9803065373, 1),
-(10, 'pathakvivek7865@gmail.com', 0, 48),
-(13, 'pathak', 0, 51),
-(15, 'pathak@gmail.com', 0, 54);
+(60, 'achailkhadka@gmail.com', 0, 2),
+(61, 'anilkumarthakur@gmail.com', 0, 3),
+(62, 'abhiyanluitel@gmail.com', 0, 4),
+(63, 'beingbivek@gmail.com', 0, 5),
+(64, 'kumaranilthakur60@gmail.com', 0, 6),
+(65, 'eranilkumarthakur@gmail.com', 0, 7),
+(66, '60saritasharma@gmail.com', 0, 8),
+(67, 'saritasharma2053@gmail.com', 0, 9),
+(68, 'anilkumarthakur600@gmail.com', 0, 10),
+(69, 'ioeallnote@gmail.com', 0, 11),
+(70, 'pathakvivek7865@gmail.com', 0, 12),
+(71, 'kachal@gmail.com', 0, 13),
+(72, 'sbkbikhyat@gmail.com', 0, 14),
+(73, 'padamjoshi65@gmail.com', 0, 15),
+(74, 'suryabhusal11@gmail.com', 0, 16),
+(75, 'suyenshrestha@gmail.com', 0, 17),
+(76, 'bharatawasti@gmail.com', 0, 18),
+(77, 'sangambasnet@gmail.com', 0, 19),
+(78, 'anupbabuneupane@gmail.com', 0, 20);
 
 -- --------------------------------------------------------
 
@@ -103,7 +135,27 @@ CREATE TABLE `geo_location` (
 --
 
 INSERT INTO `geo_location` (`geo_location_id`, `latitude`, `longitude`, `place_id`) VALUES
-(2, 27.7106, 85.3486, 1);
+(1, 27.7148, 85.2904, 2),
+(2, 27.7106, 85.3486, 1),
+(3, 28.9985, 83.8473, 3),
+(4, 27.6721, 85.4281, 4),
+(5, 27.6461, 85.4743, 5),
+(6, 27.7042, 85.3068, 6),
+(7, 27.7163, 85.4279, 7),
+(8, 27.5969, 85.3801, 8),
+(9, 27.6792, 83.507, 9),
+(10, 27.7174, 85.5046, 10),
+(11, 27.5341, 84.4525, 11),
+(12, 27.5698, 85.5824, 12),
+(13, 26.7304, 85.9256, 13),
+(14, 27.694, 85.3536, 14),
+(15, 27.7909, 85.4272, 15),
+(16, 27.7142, 85.3145, 16),
+(17, 27.7139, 85.3179, 17),
+(18, 27.7057, 85.2888, 18),
+(19, 27.7096, 85.3098, 19),
+(20, 27.7148, 85.2904, 20),
+(21, 27.725, 85.2622, 21);
 
 -- --------------------------------------------------------
 
@@ -151,6 +203,7 @@ CREATE TABLE `place` (
 INSERT INTO `place` (`place_id`, `name`, `address`, `description`, `established`, `importance`, `prefered_activities`, `featured_image`) VALUES
 (1, 'PashupatiNath Temple', 'Gaushala,Kathmandu,Nepal', 'Famous temple among the Hindus.\r\nThe Pashupatinath Temple is a famous and sacred Hindu temple complex that is located on the banks of the Bagmati River, approximately 5 kilometres north-east of Kathmandu in the eastern part of Kathmandu Valley, the capital of Nepal.', '1817-07-04', 'Lord PashupatiNath ki jai.', 'Worshiping The Temple', 'http://bit.ly/2B3826X'),
 (2, 'Swayambhunath Stupa', 'Kathmandu,Nepal', 'Find peace and prayers on the little hillock of Swaymbhunath northwest of Kathmandu Valley.', '2018-07-02', 'The huge gold plated Vajra ‘thunderbolt’ set in the east side of the stupa\r\n\r\nBuddha statue on the west side of Swayambhu\r\n\r\nThe Sleeping Buddha\r\n\r\nThe Dewa Dharma Monastery, noted for a bronze icon of Buddha and traditional Tibetan paintings\r\n\r\nThe temple dedicated to Harati, the goddess of all children. It is said that she was an ogress before Lord Buddha converted her to be the caretaker of all children.', 'Praying the Buddha', 'https://bit.ly/2KMjzaC'),
+(3, 'mustang', 'Gaushala,Kathmandu,Nepal', 'Combining natural beauty, cultural heritage and a rich history, Nepal is one of the most culturally appealing places in the world. Historical cities and temples are surrounded by the broad mountain ranges that hug the country and run through its landscape. Rich fertile soils reward the land with an incredible and diverse ecosystem, and a wonderful array of ethnicities and cultures await to be discovered. Nepal is a place like no other.', 'N/A', 'Natural Beauty.', 'Natural Beauty', 'http://bit.ly/2MreucG'),
 (4, 'Bhaktapur Durbar Square', 'Bhaktapur', 'Bhaktapur Durbar Square is the plaza in front of the royal palace of the old Bhaktapur Kingdom ', '1427 AD', ' museum of medieval art,architecture with many examples of sculpture\r\n\r woodcarving and colossal pagoda temples consecrated to different gods and goddesses which is 15 km far from Kathmandu,\r\n\rthe guardian deities looking out from their sanctuaries, the wood carvings in every place-struts, lintels, uprights, tympanums, gateways and windows-all seem to form a well-orchestrated symphony', 'worship', 'http://bit.ly/2MEGLJr'),
 (5, 'Kailashnath Mahadev Statue', 'Sanga,Suryabinayak', 'Kailashnath Mahadev Statue (???????? ??????) is the world’s tallest Shiva statue; according to the List of statues by height, Kailashnath Mahadev is the world’s fortieth-tallest statue, four places below the Statue of Liberty. It is situated in Sanga, the border of Bhaktapur and Kavrepalanchwok districts in Nepal which is about 20 km from Kathmandu.The statue is 144 feet high and made using copper, zinc, concrete and steel. According to the List of statues by height, Kailashnath Mahadev is the world’s fortieth-tallest statue, four places below the Statue of Liberty ', '2003', 'Tallest statue', 'Worship', 'http://bit.ly/2MjfWxn'),
 (6, 'Kathmandu Durbar Square', 'Basantapur', 'Kathmandu Durbar Square ( UNESCO World Heritage Site) also known as Hanuman Dhoka square is one of the major attractions in Kathmandu Valley. Most of the cultural centers of Nepal are concentrated around the Kathmandu valley; among those cultural sites, the important one is the Hanuman-dhoka Durbar Square. The name Hanuman-dhoka Durbar came from the statue of Hanuman established by the King Pratap Malla at the entrance of the royal palace in 1672 A.D. storeyed residence built by King Prithvi Narayan shah in 1770,is called Basantapur Durbar(palace). The whole complex is also known as Kathmandu Durbar Square. Located at the heart of ancient city in Kathmandu it is srounding both Hindu and Buddhist temple. Most of them are built in the pagoda style embellished with intricately carved exteriors as well as Most of the buildings we see here date from 15th to 18th century  ', '1770 AD', 'Royal Palace Of The Former Kathmandu Kingdom', 'Kathmandu Kingdom', 'http://bit.ly/2B4NevS'),
@@ -209,9 +262,25 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `email`, `password`, `first_name`, `last_name`) VALUES
 (1, 'vivek', '$2a$10$QV7Cax1520gpjaA9WVh2N./.hkUqSPej39.G.Q/NEFij4los9N/eO', 'dai', 'pathak'),
-(48, 'pathakvivek7865@gmail.com', '$2a$10$XesO8uCzetrNroBZ9fOJ2.JLQaCpb3Y93H1ZZ.H0N9Zc74LDj7zXS', 'Vivek', 'Pathak'),
-(51, 'pathak', '$2a$10$MnREgj9XB1wla3Bteeou0ukBFy6qwjs8HuFsAMEMpeSn4uYsRZcqC', 'Vivek', 'Pathak'),
-(54, 'pathak@gmail.com', '$2a$10$79G5Aswl.KS3t0JgRb3apunKR6smOx4Xa/sIOrbMx75rJkc9k8hCi', 'Vivek', 'Pathak');
+(2, 'achailkhadka@gmail.com', '$2a$10$QL5L1q.J57BN5ZZy5p0WruBySh1Zqj58MVQ6R0d2xRi2BK0RuBZ9y', 'achal', 'khadla'),
+(3, 'anilkumarthakur@gmail.com', '$2a$10$nV0bauHpjY4mi4wbARgkuOkPP69.XSLhUkVpFdNbk7HNAbYp3y5JO', 'anil', 'thakur'),
+(4, 'abhiyanluitel@gmail.com', '$2a$10$VcwWJXNt47yFPVl50CvuHepBfrrqOeQWTPjr5F9FZCS0ozM9OwF/m', 'abhiyan', 'luitel'),
+(5, 'beingbivek@gmail.com', '$2a$10$x3NTheozg/zheV4YT1ZchuhPT8IKaIXyPPPcU4jsr16qVMrSQMpvu', 'bivek', 'thapa'),
+(6, 'kumaranilthakur60@gmail.com', '$2a$10$hOp1g709NRRGvMM2/6udteWSHbIgTE/4BNTUwQWMDP5g0npqp2YDS', 'anil', 'thakur'),
+(7, 'eranilkumarthakur@gmail.com', '$2a$10$nTUktSwVyoHODB77sfVxUeaMCkalaukm99Ep9er/0w/P.6xZHBLJi', 'anil', 'thakur'),
+(8, '60saritasharma@gmail.com', '$2a$10$vuPBaLG3PI5K6ndF259tGOYCP0gJWMNSu8tKxNkUU.yU2i29EyI9e', 'sarita', 'sharma'),
+(9, 'saritasharma2053@gmail.com', '$2a$10$e0hlSngIlwQBgx/1lD1G8u3Bxj3dxMtYBY.FSIDlgGYfjaqQScr3W', 'sarita', 'sharma'),
+(10, 'anilkumarthakur600@gmail.com', '$2a$10$UpG8hFzWEyd1u6YA5XjY6OH9OMhhxhZf6NpYbOxp1MbNvDI95HxVK', 'anil', 'thakur'),
+(11, 'ioeallnote@gmail.com', '$2a$10$11ss9knR2ydZYkjDDuBTDOFGL/Wb7JKagj7JvhjhPczqiNHCbNa3O', 'anil', 'thakur'),
+(12, 'pathakvivek7865@gmail.com', '$2a$10$85u06EivHymnmJmT1sDUHOA.ZKyaTs/QY2HKFC2Q8vPtCcrsP3SRC', 'vivek', 'pathak'),
+(13, 'kachal@gmail.com', '$2a$10$OxC21QGii0ISNLS8OW/U1.gUYDezuL55.xouB5Ncu5EIWcWpjThRu', 'achal', 'khadka'),
+(14, 'sbkbikhyat@gmail.com', '$2a$10$F8dbQWIEfb4z6iQOBCEH4uIr6tUht5XXHtkVSf/nUzxtHwgDJov2a', 'bikhyat', 'adhikari'),
+(15, 'padamjoshi65@gmail.com', '$2a$10$AasM63IY8.XbkJX9N4hjOuXwnND7gxXtAkqKqmREllv9JkdKjmeCS', 'bikhyat', 'adhikari'),
+(16, 'suryabhusal11@gmail.com', '$2a$10$E5apVpHJk2Ao9MpDne5wg.7p2saylZqR6HbNcPk1z/ubEazpsFCBS', 'surya', 'bhusal'),
+(17, 'suyenshrestha@gmail.com', '$2a$10$XPiIvlUBOAg0phWEffo1I.NDtlD.pCU1ahDY.OIm1YaVRYK74Obh.', 'suyen', 'shrestha'),
+(18, 'bharatawasti@gmail.com', '$2a$10$DAAFu/0eI.WfhPCfFGdGoueIoH.BsOOXb/gHoWYuWvRsUfbNeLc9G', 'bharat', 'awasti'),
+(19, 'sangambasnet@gmail.com', '$2a$10$BuicCiOhElIAlWV8ai.EYuUxs5LamowyhaJBvwYAHKBw4ngVcbcsG', 'sangam', 'basnet'),
+(20, 'anupbabuneupane@gmail.com', '$2a$10$GuDOQapvpRNtRMm1EjFOtuD7ZQk4GQDj5EciUzUd6cI2EMPpd02Du', 'anup', 'neupane');
 
 --
 -- Triggers `user`
@@ -256,7 +325,128 @@ CREATE TABLE `user_place` (
 --
 
 INSERT INTO `user_place` (`id`, `place_id`, `rating`, `user_id`) VALUES
-(1, 14, 4, 1);
+(1, 1, 5, 1),
+(48, 11, 2, 1),
+(49, 18, 3, 1),
+(50, 4, 1, 2),
+(51, 7, 3, 2),
+(52, 10, 5, 2),
+(53, 15, 5, 2),
+(54, 21, 4, 2),
+(55, 2, 4, 3),
+(56, 8, 5, 3),
+(57, 13, 5, 3),
+(58, 17, 3, 3),
+(59, 20, 1, 3),
+(60, 5, 3, 4),
+(61, 8, 5, 4),
+(62, 12, 4, 4),
+(63, 14, 2, 4),
+(64, 18, 3, 4),
+(65, 21, 5, 4),
+(66, 8, 4, 5),
+(67, 16, 5, 5),
+(68, 20, 3, 5),
+(69, 2, 5, 6),
+(70, 5, 5, 6),
+(71, 9, 3, 6),
+(72, 12, 2, 6),
+(73, 15, 1, 6),
+(74, 18, 5, 6),
+(75, 21, 4, 6),
+(76, 4, 5, 7),
+(77, 7, 4, 7),
+(78, 12, 3, 7),
+(79, 16, 2, 7),
+(80, 19, 5, 7),
+(81, 1, 5, 8),
+(82, 5, 4, 8),
+(83, 8, 5, 8),
+(84, 13, 4, 8),
+(85, 18, 3, 8),
+(86, 21, 1, 8),
+(87, 4, 5, 9),
+(88, 8, 4, 9),
+(89, 10, 4, 9),
+(90, 14, 3, 9),
+(91, 18, 3, 9),
+(92, 4, 4, 10),
+(93, 7, 5, 10),
+(94, 10, 4, 10),
+(95, 12, 2, 10),
+(96, 15, 4, 10),
+(97, 19, 5, 10),
+(98, 21, 1, 10),
+(99, 1, 5, 11),
+(100, 6, 5, 11),
+(101, 10, 4, 11),
+(102, 14, 5, 11),
+(103, 18, 3, 11),
+(104, 21, 3, 11),
+(105, 4, 5, 12),
+(106, 7, 4, 12),
+(107, 11, 3, 12),
+(108, 14, 5, 12),
+(109, 18, 1, 12),
+(110, 20, 2, 12),
+(111, 1, 2, 13),
+(112, 4, 2, 13),
+(113, 9, 5, 13),
+(114, 13, 4, 13),
+(115, 16, 5, 13),
+(116, 21, 5, 13),
+(117, 1, 3, 14),
+(118, 5, 5, 14),
+(119, 8, 5, 14),
+(120, 12, 5, 14),
+(121, 16, 4, 14),
+(122, 20, 2, 14),
+(123, 1, 5, 15),
+(124, 6, 4, 15),
+(125, 7, 4, 15),
+(126, 11, 5, 15),
+(127, 14, 5, 15),
+(128, 18, 5, 15),
+(129, 20, 5, 15),
+(130, 2, 2, 16),
+(131, 5, 5, 16),
+(132, 8, 5, 16),
+(133, 11, 5, 16),
+(134, 14, 5, 16),
+(135, 18, 4, 16),
+(136, 21, 1, 16),
+(137, 1, 5, 17),
+(138, 5, 3, 17),
+(139, 8, 4, 17),
+(140, 10, 1, 17),
+(141, 15, 5, 17),
+(142, 19, 5, 17),
+(143, 4, 5, 18),
+(144, 7, 4, 18),
+(145, 11, 2, 18),
+(146, 14, 4, 18),
+(147, 18, 5, 18),
+(148, 21, 1, 18),
+(149, 1, 5, 19),
+(150, 5, 5, 19),
+(151, 8, 5, 19),
+(152, 12, 4, 19),
+(153, 16, 5, 19),
+(154, 19, 2, 19),
+(155, 1, 4, 20),
+(156, 6, 4, 20),
+(157, 9, 4, 20),
+(158, 12, 4, 20),
+(159, 14, 3, 20),
+(160, 17, 4, 20),
+(161, 20, 5, 20),
+(162, 3, 3, 3),
+(163, 3, 3, 6),
+(164, 3, 2, 9),
+(165, 3, 2, 12),
+(166, 3, 5, 15),
+(167, 3, 5, 18),
+(168, 3, 4, 20);
 
 -- --------------------------------------------------------
 
@@ -275,8 +465,25 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 (1, 4),
-(51, 5),
-(54, 5);
+(2, 5),
+(3, 5),
+(4, 5),
+(5, 5),
+(6, 5),
+(7, 5),
+(8, 5),
+(9, 5),
+(10, 5),
+(11, 5),
+(12, 5),
+(13, 5),
+(14, 5),
+(15, 5),
+(16, 5),
+(17, 5),
+(18, 5),
+(19, 5),
+(20, 5);
 
 --
 -- Indexes for dumped tables
@@ -361,13 +568,13 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `address_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `address_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `contact_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `contact_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -379,7 +586,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `geo_location`
 --
 ALTER TABLE `geo_location`
-  MODIFY `geo_location_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `geo_location_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `image`
@@ -391,7 +598,7 @@ ALTER TABLE `image`
 -- AUTO_INCREMENT for table `place`
 --
 ALTER TABLE `place`
-  MODIFY `place_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `place_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -403,13 +610,13 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `user_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user_place`
 --
 ALTER TABLE `user_place`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- Constraints for dumped tables

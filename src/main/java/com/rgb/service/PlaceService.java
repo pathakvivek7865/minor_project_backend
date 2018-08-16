@@ -14,6 +14,7 @@ import com.rgb.model.UserPlace;
 import com.rgb.recomendation.Recomendation;
 import com.rgb.repository.PlaceRepository;
 import com.rgb.rootname.PlaceList;
+import com.rgb.rootname.RecomendList;
 
 @Service
 public class PlaceService {
@@ -41,11 +42,16 @@ public PlaceList getAllPlaces() {
 		return placeList;
 	}
 
+
+
+
+
+
 public void postPlace(Place place) {
 	placeRepository.save(place);
 }
 
-public List<Place> getRecomendedPlace(int id) {
+public RecomendList getRecomendedPlace(int id) {
 	
 	List<Place> recomendedPlaces = new ArrayList<>();
 	Recomendation recomendation = new Recomendation();
@@ -66,11 +72,21 @@ public List<Place> getRecomendedPlace(int id) {
    }*/
 	placeRepository.getRecomendedPlace(placeId[1],placeId[2],
 			                           placeId[3],placeId[4],
-			                           placeId[5],placeId[6])
+			                           placeId[5],placeId[6],
+			                           placeId[7],placeId[8],
+			                           placeId[9],placeId[10],
+			                           placeId[11],placeId[12],
+			                           placeId[13],placeId[14],
+			                           placeId[15],placeId[16],
+			                           placeId[17],placeId[18],
+			                           placeId[19],placeId[20])
 	
 	       .forEach(recomendedPlaces :: add);
 	
-	return recomendedPlaces;
+	
+	RecomendList recomendList = new RecomendList("places", recomendedPlaces );
+	return recomendList;
+
 }
 
 

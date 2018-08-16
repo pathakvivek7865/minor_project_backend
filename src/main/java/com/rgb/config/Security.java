@@ -43,9 +43,10 @@ public class Security extends WebSecurityConfigurerAdapter {
     	http.csrf().disable()
 		.authorizeRequests() 
 		.antMatchers("/signup/**").permitAll()
-		//.antMatchers("/places/**").permitAll()
+		.antMatchers("/places/**").permitAll()
+		.antMatchers("/users/**").permitAll()
+		.antMatchers("/rating/**").permitAll()
 		.antMatchers("/recomendation/**").permitAll()
-		//.antMatchers("/tourists/**").permitAll()
 		.anyRequest().fullyAuthenticated().and()
 		.httpBasic().authenticationEntryPoint(basicAuthenticationPoint);
     }

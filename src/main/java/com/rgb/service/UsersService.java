@@ -79,8 +79,9 @@ public class UsersService {
 		
 		Optional<Users> tempUser = usersRepository.findById(id);
 		
-		if (!tempUser.isPresent())
+		if (!tempUser.isPresent()) {
 			return ResponseEntity.notFound().build();
+		}
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String initialPassword = user.getPassword();
